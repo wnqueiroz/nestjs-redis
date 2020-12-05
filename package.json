@@ -6,7 +6,6 @@
     "name": "William Queiroz",
     "email": "wnqueiroz@outlook.com"
   },
-  "private": true,
   "license": "MIT",
   "scripts": {
     "prebuild": "rimraf dist",
@@ -28,9 +27,12 @@
     "@nestjs/config": "^0.6.1",
     "@nestjs/core": "^7.0.0",
     "@nestjs/platform-express": "^7.0.0",
+    "@nestjs/swagger": "^4.7.5",
+    "class-transformer": "^0.3.1",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
-    "rxjs": "^6.5.4"
+    "rxjs": "^6.5.4",
+    "swagger-ui-express": "^4.1.5"
   },
   "devDependencies": {
     "@nestjs/cli": "^7.0.0",
