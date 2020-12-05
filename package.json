@@ -1,10 +1,13 @@
 {
-  "name": "nestjs-microservice",
+  "name": "nestjs-rest-api",
   "version": "0.0.1",
   "description": "",
-  "author": "",
+  "author": {
+    "name": "William Queiroz",
+    "email": "wnqueiroz@outlook.com"
+  },
   "private": true,
-  "license": "UNLICENSED",
+  "license": "MIT",
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "nest build",
@@ -22,6 +25,7 @@
   },
   "dependencies": {
     "@nestjs/common": "^7.0.0",
+    "@nestjs/config": "^0.6.1",
     "@nestjs/core": "^7.0.0",
     "@nestjs/platform-express": "^7.0.0",
     "reflect-metadata": "^0.1.13",
