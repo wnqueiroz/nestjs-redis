@@ -2,10 +2,11 @@ import {
   ClassSerializerInterceptor,
   Controller,
   Get,
+  Query,
   UseInterceptors,
 } from '@nestjs/common';
 
-import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { ApiOperation, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
 
 import { PlanetaryService } from '../services';
 
@@ -23,9 +24,14 @@ export class PlanetaryController {
     description: 'The found picture of the day',
     type: ApodEntity,
   })
+  @ApiQuery({
+    name: 'date',
+    required: false,
+    example: new Date().toLocaleDateString(),
+  })
   @UseInterceptors(ClassSerializerInterceptor)
-  async getApod(): Promise<ApodEntity> {
-    const apod = await this.planetaryService.getApod();
+  async getApod(@Query('date') date: string): Promise<ApodEntity> {
+    const apod = await this.planetaryService.getApod(date);
 
     return new ApodEntity(apod);
   }

@@ -14,9 +14,13 @@ export class NasaService {
     this.httpService.axiosRef.defaults.params = { api_key: apiKey };
   }
 
-  async getApod(): Promise<any> {
+  async getApod(date: string): Promise<any> {
     return this.httpService
-      .get('/planetary/apod')
+      .get('/planetary/apod', {
+        params: {
+          date,
+        },
+      })
       .toPromise()
       .then(({ data }) => data);
   }
