@@ -8,8 +8,10 @@ import {
   PlanetaryService,
 } from '../services';
 
+import { RedisModule } from './redis.module';
+
 @Module({
-  imports: [ConfigModule.forRoot(), HttpModule],
+  imports: [ConfigModule.forRoot(), HttpModule, RedisModule],
   controllers: [PlanetaryController],
   providers: [PlanetaryService, NasaService, GoogleTranslateService],
 })

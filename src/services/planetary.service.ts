@@ -4,15 +4,21 @@ import { NasaService } from './nasa.service';
 import { GoogleTranslateService } from './google-translate.service';
 
 import { ApodEntity } from '../entities';
+import { RedisService } from './redis.service';
 
 @Injectable()
 export class PlanetaryService {
   constructor(
     private readonly nasaService: NasaService,
     private readonly googleTranslateService: GoogleTranslateService,
+    private readonly redisService: RedisService,
   ) {}
 
   async getApod(date: string): Promise<any> {
+    const cachedPayload = await this.redisService.get(date);
+
+    if (cachedPayload) return cachedPayload;
+
     const apod: ApodEntity = await this.nasaService.getApod(date);
 
     const { explanation, title } = apod;
@@ -26,7 +32,7 @@ export class PlanetaryService {
       }),
     ]);
 
-    return {
+    const payload = {
       ...apod,
       title: {
         original: title,
@@ -37,5 +43,11 @@ export class PlanetaryService {
         ptBR: translatedExplanation,
       },
     };
+
+    const ttl = 300000; // five minutes
+
+    await this.redisService.set(date, payload, ttl);
+
+    return payload;
   }
 }

@@ -27,7 +27,7 @@ export class PlanetaryController {
   @ApiQuery({
     name: 'date',
     required: false,
-    example: new Date().toLocaleDateString(),
+    example: '2020-12-06',
   })
   @UseInterceptors(ClassSerializerInterceptor)
   async getApod(@Query('date') date: string): Promise<ApodEntity> {

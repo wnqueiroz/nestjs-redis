@@ -3,7 +3,7 @@ import { ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
-import { AppModule } from './modules/app.module';
+import { AppModule } from './modules';
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { name, description, version } = require('../package.json');
