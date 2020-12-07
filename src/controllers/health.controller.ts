@@ -23,13 +23,17 @@ export class HealthController {
   @HealthCheck()
   @ApiOperation({ summary: 'Gets information about the health status' })
   check(): Promise<HealthCheckResult> {
+    const host = this.configService.get('REDIS_HOST');
+    const port = this.configService.get('REDIS_PORT');
+
+    const url = `redis://${host}:${port}`;
+
     return this.health.check([
       async (): Promise<HealthIndicatorResult> =>
         this.microservice.pingCheck<RedisOptions>('redis', {
           transport: Transport.REDIS,
           options: {
-            host: this.configService.get('REDIS_HOST'),
-            port: this.configService.get('REDIS_PORT'),
+            url,
           },
         }),
     ]);
