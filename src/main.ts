@@ -5,7 +5,8 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 import { AppModule } from './modules/app.module';
 
-import { name, description, version } from '../package.json';
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { name, description, version } = require('../package.json');
 
 async function bootstrap() {
   const logger = new Logger('NestApplication');
