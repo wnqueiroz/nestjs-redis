@@ -24,6 +24,7 @@ async function bootstrap() {
     .setDescription(description)
     .setVersion(version)
     .addTag('planetary')
+    .addTag('health')
     .build();
 
   const document = SwaggerModule.createDocument(app, options);
