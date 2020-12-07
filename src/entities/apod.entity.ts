@@ -1,6 +1,18 @@
 import { Exclude } from 'class-transformer';
 import { ApiProperty } from '@nestjs/swagger';
 
+class TranslationEntity {
+  @ApiProperty({
+    example: 'These dark pillars may look destructive...',
+  })
+  original: string;
+
+  @ApiProperty({
+    example: 'Esses pilares escuros podem parecer destrutivos...',
+  })
+  ptBR: string;
+}
+
 export class ApodEntity {
   @ApiProperty({
     example: 'Jean-Yves Letellier',
@@ -13,9 +25,9 @@ export class ApodEntity {
   date: string;
 
   @ApiProperty({
-    example: 'Mons Rumker, a 70 kilometer wide complex of volcanic domes...',
+    type: TranslationEntity,
   })
-  explanation: string;
+  explanation: TranslationEntity;
 
   @ApiProperty({
     example: 'https://apod.nasa.gov/apod/image/2012/MonsRumker_Letellier.jpg',
@@ -28,9 +40,9 @@ export class ApodEntity {
   media_type: string;
 
   @ApiProperty({
-    example: 'Mons Rumker in the Ocean of Storms',
+    type: TranslationEntity,
   })
-  title: string;
+  title: TranslationEntity;
 
   @ApiProperty({
     example: 'https://apod.nasa.gov/apod/image/2012/MonsRumker_Letellier.jpg',

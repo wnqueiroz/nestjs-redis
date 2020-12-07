@@ -3,7 +3,6 @@ import { Injectable } from '@nestjs/common';
 import { NasaService } from './nasa.service';
 import { GoogleTranslateService } from './google-translate.service';
 
-import { ApodEntity } from '../entities';
 import { RedisService } from './redis.service';
 
 @Injectable()
@@ -19,7 +18,7 @@ export class PlanetaryService {
 
     if (cachedPayload) return cachedPayload;
 
-    const apod: ApodEntity = await this.nasaService.getApod(date);
+    const apod = await this.nasaService.getApod(date);
 
     const { explanation, title } = apod;
 
