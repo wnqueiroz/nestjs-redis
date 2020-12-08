@@ -43,7 +43,7 @@ export class PlanetaryService {
       },
     };
 
-    const ttl = 300000; // five minutes
+    const ttl = 5 * 60; // five minutes
 
     await this.redisService.set(date, payload, ttl);
 
