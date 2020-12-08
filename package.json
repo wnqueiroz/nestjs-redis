@@ -1,6 +1,6 @@
 {
   "name": "nestjs-redis",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "An example API of how to use Redis in NestJS",
   "author": {
     "name": "William Queiroz",
